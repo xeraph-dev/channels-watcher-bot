@@ -5,7 +5,7 @@ from lib.clients import Clients
 from lib.utils import Env
 
 
-clients = Clients(True)
+clients = Clients()
 bot = clients.bot
 user = clients.user
 
