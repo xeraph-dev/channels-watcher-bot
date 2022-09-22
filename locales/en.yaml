@@ -1,0 +1,35 @@
+help:
+  title: I watch channels or groups and send you the messages that match the filters that you configured
+  command: help
+  description: Show help message
+cancel:
+  command: cancel
+  description: Cancel current action
+list_channels:
+  command: list_channels
+  description: List all channels configured
+add_channel:
+  command: add_channel
+  description: Add a new channel to watch
+delete_channel:
+  command: delete_channel
+  description: Delete a channel configured
+list_filters:
+  command: list_filters
+  description: List all filters configured
+list_channel_filters:
+  command: list_channel_filters
+  description: List all filters configured in the choosed channel
+add_filter:
+  command: add_filter
+  description: Add a new filter in the choosed channel
+delete_filter:
+  command: delete_filter
+  description: Delete a filter in the choosed channel
+command_not_implemented: Command not implemented yet
+user_invited_success: User invited succefully
+user_uninvited_success: User invited succefully
+invited_users: Invited users
+not_allowed: You are not allowed
+users: Users
+user_deleted_success: User deleted succefully

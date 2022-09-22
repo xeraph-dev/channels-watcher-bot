@@ -1,0 +1,35 @@
+help:
+  title: Observo canales o groups y te envio los mensajes que coinciden con los filtros que configuraste
+  command: ayuda
+  description: Muestra el mensaje de ayuda
+cancel:
+  command: cancelar
+  description: Cancelar la acción actual
+list_channels:
+  command: listar_canales
+  description: Listar todos los canales configurados
+add_channel:
+  command: agregar_canal
+  description: Añadir un nuevo canal a observar
+delete_channel:
+  command: eliminar_canal
+  description: Elminar un canal configurado
+list_filters:
+  command: listar_filtros
+  description: Listar todos los filtros configurados
+list_channel_filters:
+  command: listar_filtros_por_canal
+  description: Listar todos los filtros en el canal escogido
+add_filter:
+  command: agregar_filtro
+  description: Añadir un nuevo filtro en el canal escogido
+delete_filter:
+  command: eliminar_filtro
+  description: Eliminar un filtro en el canal escogido
+command_not_implemented: Comando no implementado aún
+user_invited_success: Usuario invitado satisfactoriamente
+user_uninvited_success: Anulada la invitacion del usuario satisfactoriamente
+invited_users: Usuarios invitados
+not_allowed: No estás autorizado
+users: Usuarios
+user_deleted_success: Userio eliminado satisfactoriamente

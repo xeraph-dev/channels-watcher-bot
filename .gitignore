@@ -1,0 +1,6 @@
+.env*
+!.env*.example
+*.session*
+__pycache__
+unknown_errors.txt
+database.json
