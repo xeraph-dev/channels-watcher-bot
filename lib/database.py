@@ -1,100 +1,68 @@
-import json
-import os
-from pyrogram.types import User
+from pyrogram.types import User as PyUser
+from prisma.types import UserInclude
+
+from lib.app import prisma
+
+user_include: UserInclude = {
+    "channels": {"include": {"filters": True}},
+}
 
 
-class AppUser:
-    id: int
-    username: int
-
-    def __init__(self, user: User):
-        self.id = user.id
-        self.username = user.username
-
-    def __iter__(self):
-        yield from {
-            "id": self.id,
-            "username": self.username,
-        }.items()
-
-    def __str__(self):
-        return json.dumps(dict(self), ensure_ascii=False)
-
-    def __repr__(self):
-        return self.__str__()
+async def create_admin(user: PyUser):
+    return await prisma.user.create(
+        data={
+            "admin": True,
+            "id": user.id,
+            "username": user.username,
+        }
+    )
 
 
-class Database:
-    __FILE = "database.json"
-    __users: dict[int, AppUser] = {}
-    __invited_users: list[str] = []
+async def find_user_by_id_or_username(user: PyUser):
+    return await prisma.user.find_first(
+        where={
+            "id": user.id,
+            "OR": [{"username": user.username}],
+        },
+        include=user_include,
+    )
 
-    def __new__(cls):
-        if not hasattr(cls, "instance"):
-            mode = "r"
-            if not os.path.exists(cls.__FILE):
-                mode = "a"
-            with open(cls.__FILE, mode) as file:
-                content = file.read() or "{}"
-                cls.__db = json.loads(content)
 
-            cls.instance = super(Database, cls).__new__(cls)
-        return cls.instance
+async def update_user_username(uuid: str, username: str):
+    return await prisma.user.update(
+        where={"uuid": uuid}, data={"username": username}, include=user_include
+    )
 
-    @property
-    def invited_users(self):
-        return self.__invited_users
 
-    @property
-    def users(self):
-        return self.__users.values()
+async def find_users_invited():
+    return await prisma.user.find_many(
+        where={"id": None, "admin": False}, include=user_include
+    )
 
-    def user_exists(self, user: User):
-        return self.is_user_acceted(user) or self.is_user_invited(user)
 
-    def is_user_invited(self, user: User):
-        return user.username in self.__invited_users
+async def create_user_invited(username: str):
+    return await prisma.user.create(data={"username": username}, include=user_include)
 
-    def is_user_acceted(self, user: User):
-        return user.id in self.__users
 
-    def invite_user(self, username: str):
-        if not username in self.__invited_users:
-            self.__invited_users.append(username)
-            self.save()
+async def delete_invited_user(username: str):
+    user = await prisma.user.find_first(
+        where={"username": username}, include=user_include
+    )
 
-    def uninvite_user(self, username: str):
-        if username in self.__invited_users:
-            self.__invited_users.remove(username)
-            self.save()
+    if user is None:
+        return None
+    elif user.id:
+        return False
 
-    def accept_invitation(self, user: User):
-        if user.username in self.__invited_users:
-            self.__invited_users.remove(user.username)
-            self.__users[user.id] = AppUser(user)
-        elif user.id in self.__users:
-            self.__users[user.id].username = user.username
+    await prisma.user.delete(where={"uuid": user.uuid})
+    return True
 
-    def delete_user(self, id: int):
-        if id in self.__users:
-            self.__users.pop(id)
-            self.save()
 
-    def save(self):
-        with open(self.__FILE, "w") as file:
-            file.write(str(self))
+async def find_users_accepted():
+    return await prisma.user.find_many(
+        where={"id": {"not": {"equals": None}}}, include=user_include  # type: ignore
+    )
 
-    def __iter__(self):
-        users = {}
-        for user in self.__users.values():
-            users[user.id] = dict(user)
-        yield from {
-            "users": users,
-            "invited_users": self.__invited_users,
-        }.items()
 
-    def __str__(self):
-        return json.dumps(dict(self), ensure_ascii=False)
-
-    def __repr__(self):
-        return self.__str__()
+async def delete_user(uuid: str):
+    return await prisma.user.delete(where={"uuid": uuid})

@@ -8,6 +8,12 @@ Install dependencies using `requirements.txt`
 pip install --user -r requirements.txt
 ```
 
+Install node.js development dependencies
+
+```shell
+yarn install
+```
+
 Copy `.env.example` to `.env`
 
 The clients implementation try to use **BOT_SESSION** and **USER_SESSION** variables, if dont exist, it use **API_ID**, **API_HASH**, and **BOT_TOKEN** variables.
@@ -22,6 +28,20 @@ Remember only push to production the `.env` file with **API_ID**, **API_HASH**, 
 
 ```shell
 python clean.py
+```
+
+Start the bot
+
+```shell
+python main.py
+```
+
+In dev mode, I recommend use nodemon to restart the command automatically
+
+Start bot
+
+```shell
+yarn nodemon main.py
 ```
 
 ## Environment variables

@@ -3,3 +3,4 @@ pyrogram=1.4.12
 tgcrypto=1.2.3
 asyncio=3.4.3
 pyyaml=6.0
+prisma=0.6.6

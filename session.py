@@ -1,24 +1,17 @@
-from pyrogram import Client
 from dotenv import set_key
-from lib.clients import Clients
 
-from lib.utils import Env
-
-
-clients = Clients()
-bot = clients.bot
-user = clients.user
+import lib.app as app
 
 
 async def main():
-    await bot.start()
+    await app.bot.start()
     print("Exporting bot session...")
-    set_key(".env", "BOT_SESSION", await bot.export_session_string())
-    await bot.stop()
-    await user.start()
+    set_key(".env", "BOT_SESSION", await app.bot.export_session_string())
+    await app.bot.stop()
+    await app.userbot.start()
     print("Exporting user session...")
-    set_key(".env", "USER_SESSION", await user.export_session_string())
-    await user.stop()
+    set_key(".env", "USER_SESSION", await app.userbot.export_session_string())
+    await app.userbot.stop()
 
 
-bot.run(main())
+app.bot.run(main())

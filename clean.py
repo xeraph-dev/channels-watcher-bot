@@ -1,8 +1,6 @@
 import os
 from dotenv import set_key
 
-from lib.database import Database
-
 
 print("Cleaning API ID...")
 set_key(".env", "API_ID", "")

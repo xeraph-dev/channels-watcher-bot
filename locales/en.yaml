@@ -27,9 +27,42 @@ delete_filter:
   command: delete_filter
   description: Delete a filter in the choosed channel
 command_not_implemented: Command not implemented yet
-user_invited_success: User invited succefully
-user_uninvited_success: User invited succefully
-invited_users: Invited users
-not_allowed: You are not allowed
 users: Users
-user_deleted_success: User deleted succefully
+channels: Channels
+filters: Filters
+filters_for: Filters for
+channel_added_success: Channel added succefully
+channel_deleted_success: Channel deleted succefully
+filter_added_succes: Filter added succefully
+filter_deleted_success: Filter deleted succefully
+channel_exists: Channel exists
+
+not_allowed: You are not allowed
+not_admin: You are not the admin
+invited_users: "**Invited users**"
+accepted_users: "**Accepted users**"
+user_not_found: "User `{{user}}` not found"
+user_invited_success: "User `{{user}}` invited succefully"
+user_uninvited_success: "User `{{user}}` uninvited succefully"
+user_was_accepted: "User `{{user}}` was accepted"
+user_deleted_success: "User `{{user}}` deleted succefully"
+help_title: I watch channels or groups and send you the messages that match the filters that you configured
+commands:
+  invited:
+    command: invited
+    description: List all invited users (admin)
+  invite:
+    command: invite
+    description: Invite a new user (admin)
+  uninvite:
+    command: uninvite
+    description: Cancel the invitation of a user who has not been accepted (admin)
+  list_users:
+    command: list_users
+    description: List all users (admin)
+  delete_user:
+    command: delete_user
+    description: Delete a user (admin)
+  help:
+    command: help
+    description: Show help message
