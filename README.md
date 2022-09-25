@@ -16,7 +16,7 @@ yarn install
 
 Copy `.env.example` to `.env`
 
-The clients implementation try to use **BOT_SESSION** and **USER_SESSION** variables, if dont exist, it use **API_ID**, **API_HASH**, and **BOT_TOKEN** variables.
+The clients implementation try to use **BOT_SESSION** and **USER_SESSION** variables, otherwise, it use **API_ID**, **API_HASH**, and **BOT_TOKEN** variables.
 
 I recomend use session string in production. To get the current bot and user session string, first configure in the `.env` the **API_ID**, **API_HASH**, and **BOT_TOKEN** and run the command below, it start both clients and save the session string in the `.env` automatically.
 
@@ -36,12 +36,32 @@ Start the bot
 python main.py
 ```
 
+### Development
+
 In dev mode, I recommend use nodemon to restart the command automatically
 
-Start bot
+Start dev bot
 
 ```shell
 yarn nodemon main.py
+```
+
+Watch prisma schema and regenerate if it change. _Tthis prisma executable was installed by python pip_
+
+```shell
+prisma generate --watch
+```
+
+Open prisma studio. _Using prisma installed by node.js (npm, yarn, pnpm, ...)_
+
+```shell
+yarn prisma studio
+```
+
+If the schema change, update the database with the current schema. _Tthis prisma executable was installed by python pip_
+
+```shell
+prisma db push
 ```
 
 ## Environment variables
@@ -50,14 +70,13 @@ yarn nodemon main.py
 >
 > Get the **BOT_TOKEN** at <https://t.me/BotFather>
 
-| Variable     | Description                                 |
-| ------------ | ------------------------------------------- |
-| API_ID       | Telegram api id                             |
-| API_HASH     | Telegram api hash                           |
-| BOT_TOKEN    | Token of you bot                            |
-| ADMIN_ID     | User with admin privilegies (ex: Bot owner) |
-| BOT_SESSION  | Bot session string to use in production     |
-| USER_SESSION | User session string to use in production    |
+| Variable     | Description                              |
+| ------------ | ---------------------------------------- |
+| API_ID       | Telegram api id                          |
+| API_HASH     | Telegram api hash                        |
+| BOT_TOKEN    | Token of you bot                         |
+| BOT_SESSION  | Bot session string to use in production  |
+| USER_SESSION | User session string to use in production |
 
 ## Bot
 
@@ -65,9 +84,6 @@ yarn nodemon main.py
 
 - [x] Multi languages
 - [ ] Configuration per user
-- [ ] Watch channels configured by users and forward to the user the message that match with them filter
-- [ ] All commands start an action and only can to finish completing it action or with `/cancel` command
-- [ ] Allow cancel an action withh `/cancel` command
 - Each user can:
   - [ ] Get all channels
   - [ ] Add channels to watch
@@ -80,6 +96,7 @@ yarn nodemon main.py
   - [x] List invited users
   - [x] Invite a new user using username
   - [x] Delete a user invitation using username
+  - [x] List accepted users
   - [x] List users registered
   - [x] Delete a user registered using ID
 
@@ -87,9 +104,7 @@ yarn nodemon main.py
 
 All users
 
-- [x] Start (start)
 - [x] Help (help)
-- [ ] Cancel (cancel)
 - [ ] Get all channels (list_channels)
 - [ ] Add channel (add_channel)
 - [ ] Delete channel (delete_channel)
@@ -103,6 +118,7 @@ Admins
 - [x] List invited (invited)
 - [x] Invite (invite \<username>)
 - [x] Delete invitation (uninvite \<username>)
+- [x] List acceted (accepted)
 - [x] List users (list_users)
 - [x] Delete user (delete_user \<id>)
 

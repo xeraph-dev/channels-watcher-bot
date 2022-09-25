@@ -1,42 +1,3 @@
-help:
-  title: I watch channels or groups and send you the messages that match the filters that you configured
-  command: help
-  description: Show help message
-cancel:
-  command: cancel
-  description: Cancel current action
-list_channels:
-  command: list_channels
-  description: List all channels configured
-add_channel:
-  command: add_channel
-  description: Add a new channel to watch
-delete_channel:
-  command: delete_channel
-  description: Delete a channel configured
-list_filters:
-  command: list_filters
-  description: List all filters configured
-list_channel_filters:
-  command: list_channel_filters
-  description: List all filters configured in the choosed channel
-add_filter:
-  command: add_filter
-  description: Add a new filter in the choosed channel
-delete_filter:
-  command: delete_filter
-  description: Delete a filter in the choosed channel
-command_not_implemented: Command not implemented yet
-users: Users
-channels: Channels
-filters: Filters
-filters_for: Filters for
-channel_added_success: Channel added succefully
-channel_deleted_success: Channel deleted succefully
-filter_added_succes: Filter added succefully
-filter_deleted_success: Filter deleted succefully
-channel_exists: Channel exists
-
 not_allowed: You are not allowed
 not_admin: You are not the admin
 invited_users: "**Invited users**"
@@ -47,6 +8,9 @@ user_uninvited_success: "User `{{user}}` uninvited succefully"
 user_was_accepted: "User `{{user}}` was accepted"
 user_deleted_success: "User `{{user}}` deleted succefully"
 help_title: I watch channels or groups and send you the messages that match the filters that you configured
+channel_added_success: Channel `{{channel}}` added succefully
+channel_deleted_success: Channel `{{channel}}` deleted succefully
+command_not_implemented: Command `{{command}}` not implemented yet
 commands:
   invited:
     command: invited
@@ -57,6 +21,9 @@ commands:
   uninvite:
     command: uninvite
     description: Cancel the invitation of a user who has not been accepted (admin)
+  accepted:
+    command: accepted
+    description: List all accepted users (admin)
   list_users:
     command: list_users
     description: List all users (admin)
@@ -66,3 +33,24 @@ commands:
   help:
     command: help
     description: Show help message
+  add_channel:
+    command: add_channel
+    description: Add a new channel to watch
+  list_channels:
+    command: list_channels
+    description: List all channels configured
+  delete_channel:
+    command: delete_channel
+    description: Delete a channel configured
+  list_filters:
+    command: list_filters
+    description: List all filters configured
+  list_channel_filters:
+    command: list_channel_filters
+    description: List all filters configured in the choosed channel
+  add_filter:
+    command: add_filter
+    description: Add a new filter in the choosed channel
+  delete_filter:
+    command: delete_filter
+    description: Delete a filter in the choosed channel

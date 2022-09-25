@@ -1,4 +1,5 @@
 import sys
+import logging as log
 from pyrogram.client import Client
 from pyrogram.types import BotCommand
 from prisma import Prisma
@@ -14,7 +15,6 @@ userbot: Client
 admin: User | None
 
 if env.BOT_SESSION and env.USER_SESSION:
-    print("hola")
     bot = Client("bot", session_string=env.BOT_SESSION)
     userbot = Client("user", session_string=env.USER_SESSION)
 elif env.BOT_TOKEN and env.API_ID and env.API_HASH:
@@ -35,8 +35,24 @@ async def set_current_admin():
     admin = await prisma.user.find_first(where={"admin": True})
 
 
-admin_commands = ["invited", "invite", "uninvite", "list_users", "delete_user"]
-user_commands = ["help"]
+admin_commands = [
+    "invited",
+    "invite",
+    "uninvite",
+    "accepted",
+    "list_users",
+    "delete_user",
+]
+user_commands = [
+    "list_channels",
+    "add_channel",
+    "delete_channel",
+    "list_filters",
+    "list_channel_filters",
+    "add_filter",
+    "delete_filter",
+    "help",
+]
 commands = admin_commands + user_commands
 
 

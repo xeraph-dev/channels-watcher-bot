@@ -1,5 +1,6 @@
-from pyrogram.types import User as PyUser
+from pyrogram.types import User as PyUser, Chat
 from prisma.types import UserInclude
+from prisma.models import User
 
 from lib.app import prisma
 
@@ -36,7 +37,7 @@ async def update_user_username(uuid: str, username: str):
 
 async def find_users_invited():
     return await prisma.user.find_many(
-        where={"id": None, "admin": False}, include=user_include
+        where={"admin": False, "id": None, "admin": False}, include=user_include
     )
 
 
@@ -60,9 +61,30 @@ async def delete_invited_user(username: str):
 
 async def find_users_accepted():
     return await prisma.user.find_many(
-        where={"id": {"not": {"equals": None}}}, include=user_include  # type: ignore
+        where={"admin": False, "id": {"not": {"equals": None}}}, include=user_include  # type: ignore
     )
 
 
 async def delete_user(uuid: str):
     return await prisma.user.delete(where={"uuid": uuid})
+
+
+async def user_add_channel(chat: Chat, user: User):
+    return await prisma.channel.upsert(
+        where={"id": chat.id},
+        data={
+            "create": {
+                "id": chat.id,
+                "name": chat.username,
+                "users": {"connect": {"uuid": user.uuid}},
+            },
+            "update": {
+                "name": chat.username,
+                "users": {"connect": {"uuid": user.uuid}},
+            },
+        },
+    )
+
+
+async def find_channel(id: int):
+    return await prisma.channel.find_first(where={"id": id})
