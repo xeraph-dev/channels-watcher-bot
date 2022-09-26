@@ -83,15 +83,15 @@ prisma db push
 ### Bot Requirements
 
 - [x] Multi languages
-- [ ] Configuration per user
+- [x] Configuration per user
 - Each user can:
-  - [ ] Get all channels
-  - [ ] Add channels to watch
-  - [ ] Delete channels
-  - [ ] Get all filters
-  - [ ] Get all filters per channel
-  - [ ] Add filters or keyword to a specific channel
-  - [ ] Delete filters
+  - [x] Get all channels
+  - [x] Add channels to watch
+  - [x] Delete channels
+  - [x] Get all filters
+  - [x] Get all filters per channel
+  - [x] Add filters or keyword to a specific channel
+  - [x] Delete filters
 - Admin can:
   - [x] List invited users
   - [x] Invite a new user using username
@@ -105,13 +105,13 @@ prisma db push
 All users
 
 - [x] Help (help)
-- [ ] Get all channels (list_channels)
-- [ ] Add channel (add_channel)
-- [ ] Delete channel (delete_channel)
-- [ ] Get all filters (list_filters)
-- [ ] Get all filters per channel (list_channel_filters)
-- [ ] Add filter (add_filter)
-- [ ] Delete filter (delete_filter)
+- [x] Get all channels (list_channels)
+- [x] Add channel (add_channel)
+- [x] Delete channel (delete_channel)
+- [x] Get all filters (list_filters)
+- [x] Get all filters per channel (list_channel_filters)
+- [x] Add filter (add_filter)
+- [x] Delete filter (delete_filter)
 
 Admins
 
@@ -126,6 +126,6 @@ Admins
 
 ### User bot Requirements
 
-- [ ] Join to channels configured per user
+- [x] Join to channels configured per user
 - [ ] Leave of channels that dont have users watching
-- [ ] Watch channels configured and send messages that match with its filters to user that configured it
+- [x] Watch channels configured and send messages that match with its filters to user that configured it
