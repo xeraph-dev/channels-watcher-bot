@@ -10,7 +10,13 @@ user_deleted_success: Userio {{user}} eliminado satisfactoriamente
 help_title: Observo canales o groups y te envio los mensajes que coinciden con los filtros que configuraste
 channel_added_success: Canal `{{channel}}` añadido satisfactoriamente
 channel_deleted_success: Canal `{{channel}}` eliminado satisfactoriamente
+filter_added_success: Filtro `{{filter}}` añadido satisfactoriamente al canal `{{channel}}`
+filter_deleted_success: Filtro `{{filter}}` eliminado satisfactoriamente del canal `{{channel}}`
 command_not_implemented: Comando `{{command}}` no implementado aún
+channels: Canales
+filters: Filtros
+filters_for_channel: Filtros para el canal `{{channel}}`
+message_from_channel: Mensaje del canal `{{channel}}` coincide con el filtro `{{filter}}`. Haz click [aquí]({{link}})
 commands:
   invited:
     command: invitados

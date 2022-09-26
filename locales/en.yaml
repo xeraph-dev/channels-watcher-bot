@@ -10,7 +10,13 @@ user_deleted_success: "User `{{user}}` deleted succefully"
 help_title: I watch channels or groups and send you the messages that match the filters that you configured
 channel_added_success: Channel `{{channel}}` added succefully
 channel_deleted_success: Channel `{{channel}}` deleted succefully
+filter_added_success: Filter `{{filter}}` added succefully to channel `{{channel}}`
+filter_deleted_success: Filter `{{filter}}` deleted succefully of channel `{{channel}}`
 command_not_implemented: Command `{{command}}` not implemented yet
+channels: Channels
+filters: Filters
+filters_for_channel: Filters for channel `{{channel}}`
+message_from_channel: Message from channel `{{channel}}` match with filter `{{filter}}`. Click [here]({{link}})
 commands:
   invited:
     command: invited

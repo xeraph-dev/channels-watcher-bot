@@ -14,7 +14,7 @@ import lib.database as db
 import lib.app as app
 
 
-@app.bot.on_message(filters.command(["invited"]))
+@app.bot.on_message(filters.command(["invited", "invitados"]))
 @log_try_access
 @bot_inject
 @only_allowed
@@ -30,7 +30,7 @@ async def invited(user: User, message: Message, t):
     await message.reply(text)
 
 
-@app.bot.on_message(filters.command(["invite"]))
+@app.bot.on_message(filters.command(["invite", "invitar"]))
 @log_try_access
 @bot_inject
 @only_allowed
@@ -42,7 +42,7 @@ async def invite(user: User, message: Message, t):
     await message.reply(t("user_invited_success", {"user": created.username}))
 
 
-@app.bot.on_message(filters.command(["uninvite"]))
+@app.bot.on_message(filters.command(["uninvite", "desinvitar"]))
 @log_try_access
 @bot_inject
 @only_allowed
@@ -61,7 +61,7 @@ async def uninvite(user: User, message: Message, t):
     )
 
 
-@app.bot.on_message(filters.command(["accepted"]))
+@app.bot.on_message(filters.command(["accepted", "aceptados"]))
 @log_try_access
 @bot_inject
 @only_allowed
@@ -77,7 +77,7 @@ async def accepted(user: User, message: Message, t):
     await message.reply(text)
 
 
-@app.bot.on_message(filters.command(["list_users"]))
+@app.bot.on_message(filters.command(["list_users", "listar_usuarios"]))
 @log_try_access
 @bot_inject
 @only_allowed
@@ -99,7 +99,7 @@ async def list_users(user: User, message: Message, t):
     await message.reply(text)
 
 
-@app.bot.on_message(filters.command(["delete_user"]))
+@app.bot.on_message(filters.command(["delete_user", "eliminar_usuario"]))
 @log_try_access
 @bot_inject
 @only_allowed

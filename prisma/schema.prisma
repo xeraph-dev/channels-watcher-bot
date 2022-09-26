@@ -15,6 +15,7 @@ model User {
   id        Int?      @unique
   username  String    @unique
   admin     Boolean   @default(false)
+  lang      String    @default("en")
   channels  Channel[]
   filters   Filter[]
 }
@@ -33,7 +34,7 @@ model Filter {
   uuid        String   @id @default(uuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  filter      String[]
+  filter      String
   user        User     @relation(fields: [userUuid], references: [uuid])
   userUuid    String
   channel     Channel  @relation(fields: [channelUuid], references: [uuid])
