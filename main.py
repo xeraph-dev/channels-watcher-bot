@@ -3,9 +3,7 @@ from pyrogram.methods.utilities.idle import idle
 from lib.app import prisma, set_bot_commands, set_current_admin
 
 import lib.app as app
-import lib.handlers.admin
-import lib.handlers.user
-import lib.handlers.usebot
+import lib.handlers
 
 
 async def main():

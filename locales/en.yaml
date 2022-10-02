@@ -17,6 +17,7 @@ channels: Channels
 filters: Filters
 filters_for_channel: Filters for channel `{{channel}}`
 message_from_channel: Message from channel `{{channel}}` match with filter `{{filter}}`. Click [here]({{link}})
+cant_join: I can't join to `{{chat}}`, ask the admin to use it manually and try again later.
 commands:
   invited:
     command: invited

@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.enums.chat_type import ChatType
 from prisma.models import User
 
 from lib.decorators import bot_inject, log_access, log_try_access, only_allowed
@@ -40,8 +41,11 @@ async def list_channels(user: User, message: Message, t):
 async def add_channel(user: User, message: Message, t):
     name = message.command[1]
     chat = await app.userbot.get_chat(name)
+    if chat.type == ChatType.CHANNEL:
+        await app.userbot.join_chat(chat.id)
+    else:
+        await message.reply(t("cant_join", {"chat": name}))
     channel = await db.user_add_channel(chat, user)
-    await app.userbot.join_chat(channel.name)
     await message.reply(t("channel_added_success", {"channel": channel.name}))
 
 
@@ -100,7 +104,7 @@ async def list_channel_filters(user: User, message: Message, t):
 @log_access
 async def add_filter(user: User, message: Message, t):
     channel = message.command[1]
-    filter = message.command[2]
+    filter = " ".join(message.command[2:])
     await db.user_add_filter(filter, channel, user)
     await message.reply(
         t("filter_added_success", {"filter": filter, "channel": channel})

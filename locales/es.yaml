@@ -7,7 +7,7 @@ user_invited_success: Usuario {{user}} invitado satisfactoriamente
 user_uninvited_success: Anulada la invitacion del usuario {{user}} satisfactoriamente
 user_was_accepted: El usuario {{user}} fue aceptado
 user_deleted_success: Userio {{user}} eliminado satisfactoriamente
-help_title: Observo canales o groups y te envio los mensajes que coinciden con los filtros que configuraste
+help_title: Observo canales o grupos y te envio los mensajes que coinciden con los filtros que configuraste
 channel_added_success: Canal `{{channel}}` añadido satisfactoriamente
 channel_deleted_success: Canal `{{channel}}` eliminado satisfactoriamente
 filter_added_success: Filtro `{{filter}}` añadido satisfactoriamente al canal `{{channel}}`
@@ -17,6 +17,7 @@ channels: Canales
 filters: Filtros
 filters_for_channel: Filtros para el canal `{{channel}}`
 message_from_channel: Mensaje del canal `{{channel}}` coincide con el filtro `{{filter}}`. Haz click [aquí]({{link}})
+cant_join: No puedo unirme a `{{chat}}`, pide al administrador que se usa manualmente y vuelve a intertarlo luego.
 commands:
   invited:
     command: invitados

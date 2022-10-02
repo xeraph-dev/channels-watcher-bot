@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  bot:
+    build: .
+    restart: always
+    environment:
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - BOT_SESSION=${BOT_SESSION}
+      - USER_SESSION=${USER_SESSION}
+      - DATABASE_URL='postgresql://${DATABASE_USER:-postgres}:${DATABASE_PASSWORD:-postgres}@${DATABASE_HOST:-172.20.0.5}:${DATABASE_PORT:-5432}/${DATABASE_NAME}?schema=public'
+    networks:
+      containers:
+        ipv4_address: 172.20.0.7
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USER:-postgres}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-postgres}
+    ports:
+      - ${DATABASE_PORT:-5432}:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      containers:
+        ipv4_address: 172.20.0.5
+volumes:
+  db:
+    driver: local
+
+networks:
+  containers:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
