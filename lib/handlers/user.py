@@ -118,7 +118,7 @@ async def add_filter(user: User, message: Message, t):
 @log_access
 async def delete_filter(user: User, message: Message, t):
     channel = message.command[1]
-    filter = message.command[2]
+    filter = " ".join(message.command[2:])
     await db.user_delete_filter(filter, channel, user)
     await message.reply(
         t("filter_deleted_success", {"filter": filter, "channel": channel})
